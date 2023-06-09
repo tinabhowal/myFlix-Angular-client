@@ -12,7 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 
-// import { formatDate } from '@angular/common';
+import { formatDate } from '@angular/common';
+
 
 
 @Component({
@@ -27,12 +28,14 @@ export class UserProfileComponent implements OnInit {
   favouriteMovies: any[] = [];
 
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  
 
   constructor(
     public fetchApiData: FetchApiDataService,
     //public dialogRef: MatDialogRef<UserProfileComponent>,
     public snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    
   ) { }
 
   ngOnInit(): void {
@@ -49,8 +52,10 @@ export class UserProfileComponent implements OnInit {
           this.user = user;
           this.userData.Username = user.Username;
           this.userData.Email = user.Email;
-          this.userData.Birthday = user.Birthday;
-  
+          // this.userData.Birthday = user.Birthday;
+          this.userData.Birthday = formatDate(this.user.Birthday, 'yyyy-MM-dd', 'en-US', 'UTC+0');
+
+
           this.fetchApiData.getAllMovies().subscribe((resp: any) => {
             this.favouriteMovies = resp.filter((m: { _id: any; }) => this.user.FavouriteMovies.indexOf(m._id) >= 0);
           });
@@ -67,13 +72,16 @@ export class UserProfileComponent implements OnInit {
     }
   }
   
+
+  
+  
   
   
   
 
-  /**
-   *Calls the API to update the user info.
-   */
+ 
+//  API call to update the user info.
+   
   editUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((result) => {
       localStorage.setItem('user', JSON.stringify(result));
@@ -88,9 +96,8 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  /**
-  *Calls the API to delete the user.
-  */
+  //API call to delete the user
+
   deleteUser(): void {
     this.fetchApiData.deleteUser().subscribe((result) => {
       localStorage.clear();

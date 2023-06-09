@@ -1,0 +1,19 @@
+.toolbar {
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.left-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .right-section {
+    display: flex;
+    align-items: center;
+  }

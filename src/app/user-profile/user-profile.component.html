@@ -1,20 +1,21 @@
 <app-top-bar></app-top-bar>
-<div style="padding:1rem">
-    <h1>Profile</h1>
+<!-- <div class="user" style="padding:1rem"> -->
+  <div class="user" >
+    <h4>Profile</h4>
     <p>Username: {{user.Username}}</p>
     <p>Email: {{user.Email}}</p>
   
-    <h2>Favorite Movies</h2>
+    <h4>Favorite Movies</h4>
     <mat-list>
       <mat-list-item *ngFor="let movie of favouriteMovies">
         <!-- <mat-icon matListItemIcon>folder</mat-icon> -->
-        <img matListItemAvatar src="{{movie.ImageURL}}" />
+        <img matListItemAvatar src="{{movie.ImagePath}}" />
         <div matListItemTitle>{{movie.Title}}</div>
         <div matListItemLine>{{movie.Director.Name}}</div>
       </mat-list-item>
     </mat-list>
   
-    <h2>Update Profile</h2>
+    <h4>Update Profile</h4>
     <form>
       <mat-form-field>
         <input matInput [(ngModel)]="userData.Password" minlength="8" type="password" placeholder="Password"
