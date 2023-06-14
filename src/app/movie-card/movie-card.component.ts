@@ -23,6 +23,9 @@ ngOnInit(): void {
   this.getMovies();
 }
 
+/**
+ * Calls the get movies method on the API.
+ */
 getMovies(): void {
   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -32,7 +35,11 @@ getMovies(): void {
   }
 
 
-  //opens the genre dialog
+  /**
+   * Opens the genre dialog.
+   * @param name The genre's name to show on the dialog (title)
+   * @param description description The genre's description to show on the dialog
+   */
   openGenre(name: string, description: string): void {
     this.dialog.open(MovieInfoComponent, {
       data: {
@@ -43,7 +50,11 @@ getMovies(): void {
     });
   }
 
-  //opens director dialog
+  /**
+   * Opens the director dialog.
+   * @param name The director's name to show on the dialog (title)
+   * @param bio The director's biography to show on the dialog
+   */
   openDirector(name: string, bio: string): void {
     this.dialog.open(MovieInfoComponent, {
       data: {
@@ -54,7 +65,10 @@ getMovies(): void {
     });
   }
 
-  //opens the movie description
+   /**
+   * Opens the movie description dialog.
+   * @param description The text to show on the dialog
+   */
   openSynopsis(description: string): void {
     this.dialog.open(MovieInfoComponent, {
       data: {
